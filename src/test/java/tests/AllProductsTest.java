@@ -27,6 +27,8 @@ public class AllProductsTest {
 
 	@BeforeMethod
 	public void init() throws MalformedURLException, InterruptedException {
+		
+		System.out.println("AllProductsTest");
 
 		System.out.println("Starting Test: " + this.getClass().getSimpleName() + " | Thread ID: "
 				+ Thread.currentThread().getId());

@@ -26,6 +26,7 @@ public class CreateNewOrderTest {
 
 	@BeforeMethod
 	public void init() throws MalformedURLException, InterruptedException {
+		System.out.println("CreateNewOrderTest");
 
 		System.out.println("Starting Test: " + this.getClass().getSimpleName() + " | Thread ID: "
 				+ Thread.currentThread().getId());
