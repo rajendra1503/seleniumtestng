@@ -25,7 +25,7 @@ public class LoginTest {
 	@BeforeMethod
 	public void init() throws MalformedURLException, InterruptedException {
 		
-		System.out.println("LoginTest");
+		System.out.println("LoginTest First Test");
 
 		System.out.println("Starting Test: " + this.getClass().getSimpleName() + " | Thread ID: "
 				+ Thread.currentThread().getId());
