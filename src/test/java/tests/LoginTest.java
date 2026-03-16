@@ -1,17 +1,20 @@
 package tests;
 
 import org.testng.annotations.Test;
+import driver.DriverManager;
 import libraries.Utility;
 import pom.AllOrdersPage;
 import pom.LoginPage;
-import org.testng.annotations.BeforeTest;
+
+import java.net.MalformedURLException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class LoginTest {
 
-	public WebDriver driver;
 	String baseUrl = "http://secure.smartbearsoftware.com/samples/testcomplete11/WebOrders/login.aspx";
 	String expectedTitle = "Web Orders";
 	String actualTitle = null;
@@ -19,13 +22,20 @@ public class LoginTest {
 	LoginPage loginPage;
 	AllOrdersPage allOrdersPage;
 
-	@BeforeTest
-	public void init() throws InterruptedException {
+	@BeforeMethod
+	public void init() throws MalformedURLException, InterruptedException {
 
-		driver = Utility.launchApplication(baseUrl, 3);
+		System.out.println("Starting Test: " + this.getClass().getSimpleName() + " | Thread ID: "
+				+ Thread.currentThread().getId());
+
+		WebDriver driver = Utility.launchApplication(baseUrl, 1);
+		DriverManager.setDriver(driver);
+
 		loginPage = new LoginPage(driver);
-		allOrdersPage = new AllOrdersPage(driver);	
+		allOrdersPage = new AllOrdersPage(driver);
+
 		loginPage.loginToApplication("Tester", "test");
+		Thread.sleep(7000);
 	}
 
 	@Test
@@ -34,10 +44,10 @@ public class LoginTest {
 		Assert.assertEquals(actualTitle, expectedTitle);
 	}
 
-	@AfterTest
+	@AfterMethod
 	public void stop() {
 		allOrdersPage.clickLogout();
-		Utility.closeApplication();
+		DriverManager.quitDriver();
 	}
 
 }
