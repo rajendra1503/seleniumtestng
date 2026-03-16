@@ -30,7 +30,7 @@ public class CreateNewOrderTest {
 		System.out.println("Starting Test: " + this.getClass().getSimpleName() + " | Thread ID: "
 				+ Thread.currentThread().getId());
 
-		WebDriver driver = Utility.launchApplication(baseUrl, 1);
+		WebDriver driver = Utility.launchApplication(baseUrl, 3);
 		DriverManager.setDriver(driver);
 
 		loginPage = new LoginPage(driver);
